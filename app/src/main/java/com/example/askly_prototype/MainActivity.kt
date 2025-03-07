@@ -21,7 +21,8 @@ class MainActivity : ComponentActivity() {
             AsklyprototypeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        version = "0.1",
+                        date = "3/7/25",
                         modifier = Modifier.padding(innerPadding)
                         //Esto es un comentario de prueba
                     )
@@ -32,9 +33,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(version: String, date: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "Askly first test build. Version $version! Dated $date",
         modifier = modifier
     )
 }
@@ -43,6 +44,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     AsklyprototypeTheme {
-        Greeting("Android")
+        Greeting("0.1","3/7/25")
     }
 }
