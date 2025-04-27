@@ -18,18 +18,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main);
-        setContent {
-            AsklyprototypeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        version = "0.1",
-                        date = "3/7/25",
-                        modifier = Modifier.padding(innerPadding)
-                        //Esto es un comentario de prueba
-                    )
-                }
-            }
-        }
+        // Esto de quedarse comentado porque sino reemplaza la vista, porque setContent reestablece el contenido lol
+//        setContent {
+//            AsklyprototypeTheme {
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                    Greeting(
+//                        version = "0.1",
+//                        date = "3/7/25",
+//                        modifier = Modifier.padding(innerPadding)
+//                        //Esto es un comentario de prueba
+//                    )
+//                }
+//            }
+//        }
     }
 }
 
