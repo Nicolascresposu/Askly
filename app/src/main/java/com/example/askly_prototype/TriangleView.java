@@ -20,6 +20,16 @@ public class TriangleView extends View {
     private Path trianglePath;
     private List<PointF> clickPoints;
     private int main2 = Color.BLACK;
+    public OnTapListener onTapListener; // Standard Java interface
+
+    public interface OnTapListener {
+        void onTap();
+    }
+    public void setOnTapListener(OnTapListener listener) {
+        this.onTapListener = listener;
+    }
+
+
     public TriangleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -70,6 +80,9 @@ public class TriangleView extends View {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (isInsideTriangle(x, y)) {
                 clickPoints.add(new PointF(x, y));
+                if (onTapListener != null) {
+                    onTapListener.onTap(); // Notify listener
+                }
                 invalidate(); // Redraw the view
             }
         }

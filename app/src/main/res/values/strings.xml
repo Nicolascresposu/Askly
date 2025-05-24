@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Askly-prototype</string>
+    <string name="pregunta">pregunta placeholder</string>
+    <string name="respuesta1">placeholder 1</string>
+    <string name="respuesta2">placeholder 2</string>
+    <string name="respuesta3">placeholder 3</string>
 </resources>

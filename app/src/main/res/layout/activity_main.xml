@@ -3,10 +3,22 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <Space
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="30dp" />
+    <TextView
+        android:id="@+id/pregunta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="@string/pregunta"
+        android:textStyle="bold"
+        android:fontFamily="@font/baloottf"
+        />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
     <TextView
         android:id="@+id/respuesta1"
@@ -14,9 +26,9 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textAlignment="center"
-        android:text="placeholder 1"
+        android:text="@string/respuesta1"
         android:textStyle="bold"
-        android:fontFamily="@font/baloo"
+        android:fontFamily="@font/baloottf"
         />
 
     <com.example.askly_prototype.TriangleView
@@ -33,9 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="placeholder 2"
+            android:text="@string/respuesta2"
             android:textStyle="bold"
-            android:fontFamily="@font/baloo"
+            android:fontFamily="@font/baloottf"
             android:layout_weight="1"
             android:textColor="@color/black" />
 
@@ -43,13 +55,13 @@
             android:id="@+id/respuesta3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:textAlignment="textEnd"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:text="placeholder 3"
+            android:text="@string/respuesta3"
             android:textStyle="bold"
-            android:fontFamily="@font/baloo"
+            android:fontFamily="@font/baloottf"
             android:textColor="@color/black" />
 
 

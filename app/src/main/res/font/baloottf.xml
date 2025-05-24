@@ -3,10 +3,10 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/baloo" />
+        android:font="@font/baloottf" />
     <font
         android:fontStyle="italic"
         android:fontWeight="400"
-        android:font="@font/baloo" />
+        android:font="@font/baloottf" />
 
 </font-family>
