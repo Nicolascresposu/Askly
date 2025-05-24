@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,15 +19,16 @@ public class TriangleView extends View {
     private Paint trianglePaint;
     private Path trianglePath;
     private List<PointF> clickPoints;
-
+    private int main2 = Color.BLACK;
     public TriangleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
     private void init() {
+        main2 = ContextCompat.getColor(getContext(), R.color.main2);
         trianglePaint = new Paint();
-        trianglePaint.setColor(Color.BLUE);
+        trianglePaint.setColor(main2);
         trianglePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         trianglePaint.setStrokeWidth(4);
 

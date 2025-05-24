@@ -3,8 +3,55 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:id="@+id/respuesta1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="placeholder 1"
+        android:textStyle="bold"
+        android:fontFamily="@font/baloo"
+        />
+
     <com.example.askly_prototype.TriangleView
         android:id="@+id/triangleView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="335dp"
+        android:layout_height="298dp"
+        android:layout_gravity="center"
+        />
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/respuesta2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="placeholder 2"
+            android:textStyle="bold"
+            android:fontFamily="@font/baloo"
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/respuesta3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:text="placeholder 3"
+            android:textStyle="bold"
+            android:fontFamily="@font/baloo"
+            android:textColor="@color/black" />
+
+
+    </TableRow>
 </LinearLayout>
