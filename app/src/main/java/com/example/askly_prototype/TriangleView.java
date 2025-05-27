@@ -20,7 +20,7 @@ public class TriangleView extends View {
     private Path trianglePath;
     private List<PointF> clickPoints;
     private int main2 = Color.BLACK;
-    public OnTapListener onTapListener; // Standard Java interface
+    public OnTapListener onTapListener; // Interfaz normal de java para avisar al MainActivity.kt
 
     public interface OnTapListener {
         void onTap();
@@ -50,7 +50,7 @@ public class TriangleView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // Define triangle points (example: top-center and bottom corners)
+        // Definir las 2 puntas (arriba y derecha) del triangulo, para dimensiones
         float width = getWidth();
         float height = getHeight();
 
@@ -62,9 +62,10 @@ public class TriangleView extends View {
 
         canvas.drawPath(trianglePath, trianglePaint);
 
-        // Draw the click points
+        // Dibuja los puntos
         Paint pointPaint = new Paint();
         pointPaint.setColor(Color.RED);
+        //Aca se cambia cuando ya haya otros jugadores
         pointPaint.setStyle(Paint.Style.FILL);
 
         for (PointF point : clickPoints) {
@@ -81,9 +82,9 @@ public class TriangleView extends View {
             if (isInsideTriangle(x, y)) {
                 clickPoints.add(new PointF(x, y));
                 if (onTapListener != null) {
-                    onTapListener.onTap(); // Notify listener
+                    onTapListener.onTap(); // Avisar al listener
                 }
-                invalidate(); // Redraw the view
+                invalidate(); // Redibujar el triangulo
             }
         }
         return true;
@@ -100,7 +101,7 @@ public class TriangleView extends View {
         return isPointInTriangle(new PointF(x, y), p0, p1, p2);
     }
 
-    // Helper function to check if a point is inside a triangle
+    // Pa ver si un punto esta o no en el triangulo
     private boolean isPointInTriangle(PointF p, PointF a, PointF b, PointF c) {
         float as_x = p.x - a.x;
         float as_y = p.y - a.y;

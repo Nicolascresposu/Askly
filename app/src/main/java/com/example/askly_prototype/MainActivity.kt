@@ -45,6 +45,7 @@ class MainActivity : ComponentActivity() {
         Pregunta(17, "¿Cómo ser más creativo?", "Buscar inspiración", "Probar nuevas experiencias", "No temer al error"),
         Pregunta(18, "¿Qué hacer para recordar algo importante?", "Anotarlo", "Establecer recordatorios", "Asociarlo con algo"),
         Pregunta(19, "¿Cómo mantener la motivación?", "Establecer metas claras", "Celebrar pequeños logros", "Recordar tu 'por qué'")
+
     )
     private var tapCount = 0;
     private var actual: Pregunta? = null;
@@ -63,8 +64,11 @@ class MainActivity : ComponentActivity() {
         triangleView.setOnTapListener(object : TriangleView.OnTapListener {
             override fun onTap() {
                 tapCount++
+                if (tapCount % 2 == 0) {
+
+                }
                 if (tapCount % 3 == 0) {
-                    actual = preguntas.find { it.id == Random.nextInt(0,preguntas.size) }
+                    actual = preguntas.find { it.id == tapCount / 3 } //Random.nextInt(0,preguntas.size)
                     pregunta.text = actual?.pregunta
                     respuesta1.text = actual?.respuesta1
                     respuesta2.text = actual?.respuesta2
