@@ -28,7 +28,7 @@ Askly is an innovative social prediction game designed to strengthen friendships
 - **P2P Networking**: Device-to-device communication for multiplayer
 
 ### Key Components
-1. **Authentication System** (JWT secured)
+1. **Authentication System** (Secured with hopes and dreams)
 2. **Game Service** (Manages rounds, scoring, and synchronization)
 3. **Question Engine** (Random question selection and custom question handling)
 4. **Player Management** (Profiles and statistics)
