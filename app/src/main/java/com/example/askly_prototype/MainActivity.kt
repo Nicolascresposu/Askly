@@ -17,6 +17,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var respuesta1: TextView
     private lateinit var respuesta2: TextView
     private lateinit var respuesta3: TextView
+    private lateinit var ownerAndTarget: TextView
     data class Pregunta(
         val id: Int,
         val pregunta: String = "PlaceHolder question",
@@ -60,48 +61,22 @@ class MainActivity : ComponentActivity() {
         respuesta1 = findViewById<TextView>(R.id.respuesta1)
         respuesta2 = findViewById<TextView>(R.id.respuesta2)
         respuesta3 = findViewById<TextView>(R.id.respuesta3)
-
+        ownerAndTarget = findViewById<TextView>(R.id.ownerAndTarget)
         triangleView.setOnTapListener(object : TriangleView.OnTapListener {
             override fun onTap() {
                 tapCount++
-                if (tapCount % 2 == 0) {
-
-                }
+                // 3 en este caso es el numero de jugadores
                 if (tapCount % 3 == 0) {
                     actual = preguntas.find { it.id == tapCount / 3 } //Random.nextInt(0,preguntas.size)
                     pregunta.text = actual?.pregunta
                     respuesta1.text = actual?.respuesta1
                     respuesta2.text = actual?.respuesta2
                     respuesta3.text = actual?.respuesta3
-//                    pregunta.text = "Pasas al lado de un McDonalds"
-//                    respuesta1.text = "Va al drive-through, y se pide un solo cafe negro"
-//                    respuesta2.text = "Hay comida en casa"
-//                    respuesta3.text = "Yey\nMcDonalds\n(!!!)"
-
                 }
             }
         })
-        // Esto de quedarse comentado porque sino reemplaza la vista, porque setContent reestablece el contenido lol
-//        setContent {
-//            AsklyprototypeTheme {
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        version = "0.1",
-//                        date = "3/7/25",
-//                        modifier = Modifier.padding(innerPadding)
-//                        //Esto es un comentario de prueba
-//                    )
-//                }
-//            }
-//        }
     }
 }
-
-//fun onTouchEvent(event: MotionEvent) {
-//    if (points.size > 3) {
-//        pregunta.text="it worked!";
-//    }
-//}
 
 @Composable
 fun Greeting(version: String, date: String, modifier: Modifier = Modifier) {

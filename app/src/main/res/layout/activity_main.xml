@@ -21,6 +21,12 @@
         android:layout_height="100dp" />
 
     <TextView
+        android:id="@+id/ownerAndTarget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Default; adivina donde TARGET colocaria su pin" />
+
+    <TextView
         android:id="@+id/respuesta1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,4 +72,15 @@
 
 
     </TableRow>
+
+    <Button
+        android:id="@+id/dbgChangeOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Debug - Alterar Owner" />
+    <Button
+        android:id="@+id/dbgChangeTarget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Debug - Alterar Objetivo" />
 </LinearLayout>

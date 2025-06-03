@@ -17,12 +17,16 @@ import java.util.List;
 
 public class TriangleView extends View {
     class Pin {
-        Pin (String owner, PointF point) {
+        Pin(String owner, PointF point, String target, Integer idPregunta) {
             this.point=point;
             this.owner=owner;
+            this.target=target;
+            this.idPregunta=idPregunta;
         }
         PointF point;
         String owner;
+        String target;
+        Integer idPregunta;
     }
     private Paint trianglePaint;
     private Path trianglePath;
@@ -88,7 +92,7 @@ public class TriangleView extends View {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (isInsideTriangle(x, y)) {
-                clickPoints.add(new Pin("None",new PointF(x, y)));
+                clickPoints.add(new Pin("None",new PointF(x, y),"None",1));
                 if (onTapListener != null) {
                     onTapListener.onTap(); // Avisar al listener
                 }
