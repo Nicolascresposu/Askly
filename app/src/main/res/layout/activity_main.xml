@@ -72,15 +72,19 @@
 
 
     </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/dbgChangeOwner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Debug - Alterar Owner" />
+        <Button
+            android:id="@+id/dbgChangeOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debug - Alterar Owner" />
     <Button
         android:id="@+id/dbgChangeTarget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Debug - Alterar Objetivo" />
+    </TableRow>
 </LinearLayout>

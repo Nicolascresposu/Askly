@@ -1,6 +1,7 @@
 package com.example.askly_prototype
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
@@ -9,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.askly_prototype.ui.theme.AsklyprototypeTheme
-import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     private lateinit var triangleView: TriangleView
@@ -18,6 +18,11 @@ class MainActivity : ComponentActivity() {
     private lateinit var respuesta2: TextView
     private lateinit var respuesta3: TextView
     private lateinit var ownerAndTarget: TextView
+    private var owner="Fer"
+    private var target="Fer"
+    private lateinit var btnDbgChangeOwner: Button
+    private lateinit var btnDbgChangeTarget: Button
+
     data class Pregunta(
         val id: Int,
         val pregunta: String = "PlaceHolder question",
@@ -61,7 +66,45 @@ class MainActivity : ComponentActivity() {
         respuesta1 = findViewById<TextView>(R.id.respuesta1)
         respuesta2 = findViewById<TextView>(R.id.respuesta2)
         respuesta3 = findViewById<TextView>(R.id.respuesta3)
+
         ownerAndTarget = findViewById<TextView>(R.id.ownerAndTarget)
+        btnDbgChangeOwner = findViewById<Button>(R.id.dbgChangeOwner)
+        btnDbgChangeTarget = findViewById<Button>(R.id.dbgChangeTarget)
+
+        btnDbgChangeOwner.setOnClickListener {
+            if (owner == "Fer") {
+                owner = "Nico"
+            }
+            else if (owner == "Nico") {
+                owner = "Ari"
+            }
+            else if (owner == "Ari") {
+                owner = "Fer"
+            }
+            if (owner != target) {
+                ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
+            } else {
+                ownerAndTarget.text = owner + " coloca tu pin!"
+            }
+
+        }
+        btnDbgChangeTarget.setOnClickListener {
+            if (target == "Fer") {
+                target = "Nico"
+            }
+            else if (target == "Nico") {
+                target = "Ari"
+            }
+            else if (target == "Ari") {
+                target = "Fer"
+            }
+            if (owner != target) {
+                ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
+            } else {
+                ownerAndTarget.text = owner + " coloca tu pin!"
+            }
+        }
+
         triangleView.setOnTapListener(object : TriangleView.OnTapListener {
             override fun onTap() {
                 tapCount++
