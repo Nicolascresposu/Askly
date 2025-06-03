@@ -16,9 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TriangleView extends View {
+    class Pin {
+        Pin (String owner, PointF point) {
+            this.point=point;
+            this.owner=owner;
+        }
+        PointF point;
+        String owner;
+    }
     private Paint trianglePaint;
     private Path trianglePath;
-    private List<PointF> clickPoints;
+    private List<Pin> clickPoints;
     private int main2 = Color.BLACK;
     public OnTapListener onTapListener; // Interfaz normal de java para avisar al MainActivity.kt
 
@@ -68,8 +76,8 @@ public class TriangleView extends View {
         //Aca se cambia cuando ya haya otros jugadores
         pointPaint.setStyle(Paint.Style.FILL);
 
-        for (PointF point : clickPoints) {
-            canvas.drawCircle(point.x, point.y, 10, pointPaint);
+        for (Pin point : clickPoints) {
+            canvas.drawCircle(point.point.x, point.point.y, 10, pointPaint);
         }
     }
 
@@ -80,7 +88,7 @@ public class TriangleView extends View {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (isInsideTriangle(x, y)) {
-                clickPoints.add(new PointF(x, y));
+                clickPoints.add(new Pin("None",new PointF(x, y)));
                 if (onTapListener != null) {
                     onTapListener.onTap(); // Avisar al listener
                 }
@@ -114,7 +122,7 @@ public class TriangleView extends View {
         return true;
     }
 
-    public List<PointF> getClickPoints() {
+    public List<Pin> getClickPoints() {
         return clickPoints;
     }
 }
