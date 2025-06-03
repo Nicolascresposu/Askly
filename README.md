@@ -6,7 +6,7 @@
 
 Askly is an innovative social prediction game designed to strengthen friendships through fun, interactive gameplay. Players answer questions by placing pins on a triangular graph and then try to predict where their friends will place theirs.
 
-## 🌟 Features
+## 🌟 Features 🌟
 
 - **Social Gameplay**: Play with up to 8 friends in real-time
 - **Unique Prediction Mechanics**: Score points by predicting friends' answers
@@ -15,11 +15,11 @@ Askly is an innovative social prediction game designed to strengthen friendships
 - **Session History**: Review past games and compare scores
 - **Quick Sessions**: Fast-paced rounds perfect for social gatherings
 
-## 📱 Screenshots
+## Screenshots
 
 ![Askly screenshot 1](https://raw.githubusercontent.com/Nicolascresposu/Nicolascresposu.github.io/refs/heads/main/other_repos_images/Askly/Screenshot1.png)
 
-## 🛠️ Technical Implementation
+## Technical Implementation
 
 ### Architecture
 - **Client-Server Model**: Host creates game, others join via code
@@ -34,7 +34,7 @@ Askly is an innovative social prediction game designed to strengthen friendships
 4. **Player Management** (Profiles and statistics)
 5. **Match System** (Active game state management using JSON)
 
-## 📊 Game Mechanics
+## Game Mechanics
 
 1. **Host creates** a game and selects questions
 2. **Players join** and select their colors
@@ -47,7 +47,7 @@ Askly is an innovative social prediction game designed to strengthen friendships
     - Score formula: `S = 100 * e^(-d/30)` where d is distance in dp
 5. **Game ends** after set number of rounds, final scores displayed
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Android Studio Flamingo or later
@@ -69,11 +69,11 @@ Askly is an innovative social prediction game designed to strengthen friendships
 
 Coming soon. Eventually. I promise.
 
-📚 Documentation
+### Documentation
 
 Coming soon.
 
-🤝 Contributing
+### Contributing
 
 Contributions are welcome! Please follow these steps:
 
