@@ -9,7 +9,6 @@ import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import com.example.askly_prototype.Pin;
 
 import androidx.core.content.ContextCompat;
 
@@ -25,6 +24,7 @@ public class TriangleView extends View {
     public int currentColor = Color.RED;
     private Paint trianglePaint;
     private Path trianglePath;
+    private List<Pin> currentClickPoints;
     private List<Pin> clickPoints;
     private int main2 = Color.BLACK;
     public OnTapListener onTapListener; // Interfaz normal de java para avisar al MainActivity.kt
@@ -51,6 +51,7 @@ public class TriangleView extends View {
 
         trianglePath = new Path();
         clickPoints = new ArrayList<>();
+        currentClickPoints = new ArrayList<>();
     }
 
     @Override
@@ -75,7 +76,7 @@ public class TriangleView extends View {
         //Aca se cambia cuando ya haya otros jugadores
         pointPaint.setStyle(Paint.Style.FILL);
 
-        for (Pin point : clickPoints) {
+        for (Pin point : currentClickPoints) {
             pointPaint.setColor(point.color);
             canvas.drawCircle(point.point.x, point.point.y, 10, pointPaint);
         }
@@ -88,7 +89,11 @@ public class TriangleView extends View {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (isInsideTriangle(x, y)) {
-                clickPoints.add(new Pin(owner,new PointF(x, y),target,idPregunta,playerColor)); //Esto se llena y actualiza con datos desde MainActiivty
+                if (currentClickPoints.size() == 9) {
+                    clickPoints.addAll(currentClickPoints);
+                    currentClickPoints.removeAll(clickPoints);
+                }
+                currentClickPoints.add(new Pin(owner,new PointF(x, y),target,idPregunta,playerColor)); //Esto se llena y actualiza con datos desde MainActiivty
                 if (onTapListener != null) {
                     onTapListener.onTap(); // Avisar al listener
                 }
@@ -122,7 +127,7 @@ public class TriangleView extends View {
         return true;
     }
 
-    public List<Pin> getClickPoints() {
-        return clickPoints;
+    public List<Pin> getCurrentClickPoints() {
+        return currentClickPoints;
     }
 }
