@@ -1,5 +1,6 @@
 package com.example.askly_prototype
 
+import android.graphics.PointF
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -8,8 +9,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.askly_prototype.ui.theme.AsklyprototypeTheme
+import kotlin.math.sqrt
 
 class MainActivity : ComponentActivity() {
     private lateinit var triangleView: TriangleView
@@ -18,10 +22,14 @@ class MainActivity : ComponentActivity() {
     private lateinit var respuesta2: TextView
     private lateinit var respuesta3: TextView
     private lateinit var ownerAndTarget: TextView
+    private lateinit var scores: TextView
     private var owner="Fer"
     private var target="Fer"
     private lateinit var btnDbgChangeOwner: Button
     private lateinit var btnDbgChangeTarget: Button
+    var ferScore: Double = 0.0
+    var nicoScore: Double = 0.0
+    var ariScore: Double = 0.0
 
     data class Pregunta(
         val id: Int,
@@ -55,22 +63,28 @@ class MainActivity : ComponentActivity() {
     )
     private var tapCount = 0;
     private var actual: Pregunta? = null;
-    fun ownerCycle(ownerAndTarget: TextView) {
+    fun ownerCycle(ownerAndTarget: TextView) { //Also cycles color
         //Currently hardcoded
         if (owner == "Fer") {
             owner = "Nico"
+            triangleView.playerColor = ( Color.Green.toArgb())
         }
         else if (owner == "Nico") {
             owner = "Ari"
+            triangleView.playerColor = ( Color.Blue.toArgb())
         }
         else if (owner == "Ari") {
             owner = "Fer"
+            triangleView.playerColor = ( Color.Red.toArgb())
         }
         if (owner != target) {
             ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
         } else {
             ownerAndTarget.text = owner + " coloca tu pin!"
         }
+    }
+    private fun distanceBetweenPointF(a:PointF,b:PointF): Double {
+        return sqrt( Math.pow((a.x-b.x).toDouble(),2.0) + Math.pow((a.y-b.y).toDouble(),2.0) )
     }
     private fun targetCycle(ownerAndTarget: TextView) {
         if (target == "Fer") {
@@ -98,10 +112,18 @@ class MainActivity : ComponentActivity() {
         respuesta1 = findViewById<TextView>(R.id.respuesta1)
         respuesta2 = findViewById<TextView>(R.id.respuesta2)
         respuesta3 = findViewById<TextView>(R.id.respuesta3)
+        //Establecemos la primera
+        actual = preguntas.find { it.id == 0 } //Random.nextInt(0,preguntas.size)
+        pregunta.text = actual?.pregunta
+        respuesta1.text = actual?.respuesta1
+        respuesta2.text = actual?.respuesta2
+        respuesta3.text = actual?.respuesta3
 
         ownerAndTarget = findViewById<TextView>(R.id.ownerAndTarget)
+        ownerAndTarget.text = owner + " coloca tu pin!" //Hardcoded SOLO PARA EL INICIO
         btnDbgChangeOwner = findViewById<Button>(R.id.dbgChangeOwner)
         btnDbgChangeTarget = findViewById<Button>(R.id.dbgChangeTarget)
+        scores = findViewById<TextView>(R.id.scores)
 
         btnDbgChangeOwner.setOnClickListener {
             ownerCycle(ownerAndTarget)
@@ -112,27 +134,64 @@ class MainActivity : ComponentActivity() {
 
         triangleView.setOnTapListener(object : TriangleView.OnTapListener {
             override fun onTap() {
+
                 tapCount++
+                // 3 en este caso es el numero de jugadores
+                if (tapCount % 3 == 0) {
+                    ownerCycle(ownerAndTarget)
+                }
                 targetCycle(ownerAndTarget)
                 triangleView.owner = owner;
                 triangleView.target = target;
                 triangleView.idPregunta = tapCount / 3 //Considerar esto si hay errores con esta parte en el futuro; tiene un magic number
-                System.out.println("owner: " +triangleView.clickPoints.last().owner + " | target: " + triangleView.clickPoints.last().target + " | idPregunta: " + triangleView.clickPoints.last().idPregunta + " | point: " + triangleView.clickPoints.last().point)
+                System.out.println("owner: " +triangleView.clickPoints.last().owner + " | target: " + triangleView.clickPoints.last().target + " | idPregunta: " + triangleView.clickPoints.last().idPregunta + " | point: " + triangleView.clickPoints.last().point + " | Color: " + triangleView.clickPoints.last().color)
 
-                // 3 en este caso es el numero de jugadores
-                if (tapCount % 3 == 0) {
-                    actual = preguntas.find { it.id == tapCount / 3 } //Random.nextInt(0,preguntas.size)
+
+                //9 Seria para cuando ya estan todas las preguntas hechas. SOLO PARA FINES DE DEBUGGING.
+                if (tapCount % 9 == 0) {
+                    actual = preguntas.find { it.id == tapCount / 9 } //Random.nextInt(0,preguntas.size)
+                    //El punto del pin de fer hasta el mio
+                    ferScore += 100 * Math.pow(2.7182818,-(
+                            distanceBetweenPointF(
+                                //TODO Hay que corregir esto: Quiza podria llevar esto de una lista a otra? Una que sea los procesados,y otro que sea los por procesar.
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Nico"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Fer"}!!.point)
+                                    /30)) +
+                            100 * Math.pow(2.7182818,-(
+                            distanceBetweenPointF(
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Ari"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Fer"}!!.point)
+                                    /30))
+
+                    nicoScore += 100 * Math.pow(2.7182818,-(
+                            distanceBetweenPointF(
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Fer"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Nico"}!!.point)
+                                    /30)) +
+                            100 * Math.pow(2.7182818,-(
+                            distanceBetweenPointF(
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Ari"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Nico"}!!.point)
+                                    /30))
+
+                    ariScore += 100 * Math.pow(2.7182818,-(
+                            distanceBetweenPointF(
+                                triangleView.clickPoints.find { it.owner == "Ari"  && it.target == "Nico"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Ari"  && it.target == "Ari"}!!.point)
+                                    /30)) +
+                            100 * Math.pow(2.7182818,-(
+                            distanceBetweenPointF(
+                                triangleView.clickPoints.find { it.owner == "Ari"  && it.target == "Fer"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Ari"  && it.target == "Ari"}!!.point)
+                                    /30))
+                    scores.text = "Puntajes: " +
+                            "\nFernando: "+ ferScore +
+                            "\nNico: " + nicoScore +
+                            "\nAri:" + ariScore
                     pregunta.text = actual?.pregunta
                     respuesta1.text = actual?.respuesta1
                     respuesta2.text = actual?.respuesta2
                     respuesta3.text = actual?.respuesta3
-
-                    ownerCycle(ownerAndTarget)
-
-
-                }
-                if (tapCount % 9 == 0) {
-
                 }
             }
         })

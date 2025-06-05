@@ -18,10 +18,11 @@ import java.util.List;
 
 public class TriangleView extends View {
     //Estos 3 se establecen desde MainActivity, para el añadirpunto.
-    public String owner;
-    public String target;
+    public String owner="Fer";
+    public String target="Fer";
+    public int playerColor=Color.RED;
     public int idPregunta;
-
+    public int currentColor = Color.RED;
     private Paint trianglePaint;
     private Path trianglePath;
     private List<Pin> clickPoints;
@@ -70,11 +71,12 @@ public class TriangleView extends View {
 
         // Dibuja los puntos
         Paint pointPaint = new Paint();
-        pointPaint.setColor(Color.RED);
+
         //Aca se cambia cuando ya haya otros jugadores
         pointPaint.setStyle(Paint.Style.FILL);
 
         for (Pin point : clickPoints) {
+            pointPaint.setColor(point.color);
             canvas.drawCircle(point.point.x, point.point.y, 10, pointPaint);
         }
     }
@@ -86,7 +88,7 @@ public class TriangleView extends View {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (isInsideTriangle(x, y)) {
-                clickPoints.add(new Pin(owner,new PointF(x, y),target,idPregunta)); //Esto se llena y actualiza con datos desde MainActiivty
+                clickPoints.add(new Pin(owner,new PointF(x, y),target,idPregunta,playerColor)); //Esto se llena y actualiza con datos desde MainActiivty
                 if (onTapListener != null) {
                     onTapListener.onTap(); // Avisar al listener
                 }

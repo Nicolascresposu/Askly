@@ -87,4 +87,10 @@
         android:layout_height="wrap_content"
         android:text="Debug - Alterar Objetivo" />
     </TableRow>
+
+    <TextView
+        android:id="@+id/scores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Puntajes: \nFernando: \nNico: \nAri:" />
 </LinearLayout>
