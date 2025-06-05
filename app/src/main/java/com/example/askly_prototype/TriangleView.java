@@ -9,6 +9,7 @@ import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import com.example.askly_prototype.Pin;
 
 import androidx.core.content.ContextCompat;
 
@@ -16,18 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TriangleView extends View {
-    class Pin {
-        Pin(String owner, PointF point, String target, Integer idPregunta) {
-            this.point=point;
-            this.owner=owner;
-            this.target=target;
-            this.idPregunta=idPregunta;
-        }
-        PointF point;
-        String owner;
-        String target;
-        Integer idPregunta;
-    }
+    //Estos 3 se establecen desde MainActivity, para el añadirpunto.
+    public String owner;
+    public String target;
+    public int idPregunta;
+
     private Paint trianglePaint;
     private Path trianglePath;
     private List<Pin> clickPoints;
@@ -92,7 +86,7 @@ public class TriangleView extends View {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (isInsideTriangle(x, y)) {
-                clickPoints.add(new Pin("None",new PointF(x, y),"None",1));
+                clickPoints.add(new Pin(owner,new PointF(x, y),target,idPregunta)); //Esto se llena y actualiza con datos desde MainActiivty
                 if (onTapListener != null) {
                     onTapListener.onTap(); // Avisar al listener
                 }

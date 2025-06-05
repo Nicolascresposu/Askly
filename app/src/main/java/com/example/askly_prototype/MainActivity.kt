@@ -55,7 +55,39 @@ class MainActivity : ComponentActivity() {
     )
     private var tapCount = 0;
     private var actual: Pregunta? = null;
-
+    fun ownerCycle(ownerAndTarget: TextView) {
+        //Currently hardcoded
+        if (owner == "Fer") {
+            owner = "Nico"
+        }
+        else if (owner == "Nico") {
+            owner = "Ari"
+        }
+        else if (owner == "Ari") {
+            owner = "Fer"
+        }
+        if (owner != target) {
+            ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
+        } else {
+            ownerAndTarget.text = owner + " coloca tu pin!"
+        }
+    }
+    private fun targetCycle(ownerAndTarget: TextView) {
+        if (target == "Fer") {
+            target = "Nico"
+        }
+        else if (target == "Nico") {
+            target = "Ari"
+        }
+        else if (target == "Ari") {
+            target = "Fer"
+        }
+        if (owner != target) {
+            ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
+        } else {
+            ownerAndTarget.text = owner + " coloca tu pin!"
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -72,42 +104,21 @@ class MainActivity : ComponentActivity() {
         btnDbgChangeTarget = findViewById<Button>(R.id.dbgChangeTarget)
 
         btnDbgChangeOwner.setOnClickListener {
-            if (owner == "Fer") {
-                owner = "Nico"
-            }
-            else if (owner == "Nico") {
-                owner = "Ari"
-            }
-            else if (owner == "Ari") {
-                owner = "Fer"
-            }
-            if (owner != target) {
-                ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
-            } else {
-                ownerAndTarget.text = owner + " coloca tu pin!"
-            }
-
+            ownerCycle(ownerAndTarget)
         }
         btnDbgChangeTarget.setOnClickListener {
-            if (target == "Fer") {
-                target = "Nico"
-            }
-            else if (target == "Nico") {
-                target = "Ari"
-            }
-            else if (target == "Ari") {
-                target = "Fer"
-            }
-            if (owner != target) {
-                ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
-            } else {
-                ownerAndTarget.text = owner + " coloca tu pin!"
-            }
+            targetCycle(ownerAndTarget)
         }
 
         triangleView.setOnTapListener(object : TriangleView.OnTapListener {
             override fun onTap() {
                 tapCount++
+                targetCycle(ownerAndTarget)
+                triangleView.owner = owner;
+                triangleView.target = target;
+                triangleView.idPregunta = tapCount / 3 //Considerar esto si hay errores con esta parte en el futuro; tiene un magic number
+                System.out.println("owner: " +triangleView.clickPoints.last().owner + " | target: " + triangleView.clickPoints.last().target + " | idPregunta: " + triangleView.clickPoints.last().idPregunta + " | point: " + triangleView.clickPoints.last().point)
+
                 // 3 en este caso es el numero de jugadores
                 if (tapCount % 3 == 0) {
                     actual = preguntas.find { it.id == tapCount / 3 } //Random.nextInt(0,preguntas.size)
@@ -115,10 +126,18 @@ class MainActivity : ComponentActivity() {
                     respuesta1.text = actual?.respuesta1
                     respuesta2.text = actual?.respuesta2
                     respuesta3.text = actual?.respuesta3
+
+                    ownerCycle(ownerAndTarget)
+
+
+                }
+                if (tapCount % 9 == 0) {
+
                 }
             }
         })
     }
+
 }
 
 @Composable
