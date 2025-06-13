@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/unirsepartida"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="0dp">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:background="#467599"
+        android:paddingHorizontal="15dp">
+
+        <!-- Botón Menú -->
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Menú"
+            android:src="@drawable/icono"
+            android:scaleType="centerInside" />
+
+        <!-- Título Askly -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/baloo"
+            android:text="Askly"
+            android:textColor="#FFFFFF"
+            android:textSize="65sp"
+            android:textStyle="bold" />
+
+        <!-- Círculo Rojo -->
+        <View
+            android:id="@+id/circuloRojo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_red" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contenidopregunta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Espaciado -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="132dp" />
+
+        <!-- Nombre de la pregunta -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unirse a partida"
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:fontFamily="@font/Baloo" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresa el código de 4 dígitos"
+            android:gravity="center"
+            android:background="@drawable/margenRespuestas_button"
+            android:textSize="25sp"
+            android:textColor="#e1e1e1"
+
+            android:padding="12dp"
+            android:fontFamily="@font/Baloo" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <!-- Texto centrado -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El nombre con el que entrarás:"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:fontFamily="@font/Baloo" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="MIGUEL0W0"
+            android:textColor="#e1e1e1"
+
+            android:background="@drawable/margenRespuestas_button"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:padding="12dp"
+        android:fontFamily="@font/Baloo" />
+
+    </LinearLayout>
+</RelativeLayout>

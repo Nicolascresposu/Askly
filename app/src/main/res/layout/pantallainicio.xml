@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pantallaInicio"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="0dp">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:background="#467599"
+        android:paddingHorizontal="15dp">
+
+        <!-- Botón Menú -->
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Menú"
+            android:src="@drawable/icono"
+            android:scaleType="centerInside"
+            />
+        <!-- Título Askly -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/Baloo"
+            android:text="Askly"
+            android:textColor="#FFFFFF"
+            android:textSize="65sp"
+            android:textStyle="bold" />
+
+        <!-- Círculo Rojo -->
+        <View
+            android:id="@+id/circuloRojo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_red" />
+    </RelativeLayout>
+
+    <!-- Botón Flotante de Grupo -->
+
+    <!-- Botones de Acción -->
+
+    <ImageButton
+        android:id="@+id/btnGrupo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/header"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="23dp"
+        android:background="@drawable/round_botton"
+        android:backgroundTint="#EDCF90"
+        android:contentDescription="Unirse a grupo"
+        android:src="@android:drawable/ic_menu_myplaces" />
+
+    <ImageButton
+        android:id="@+id/btnPregunta"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/header"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="320dp"
+        android:background="@drawable/round_botton"
+        android:backgroundTint="#EDCF90"
+        android:contentDescription="Unirse a grupo"
+        android:src="@android:drawable/ic_menu_myplaces" />
+
+    <LinearLayout
+        android:id="@+id/botonesAccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2"
+        android:paddingHorizontal="8dp">
+
+        <!-- Aquí subes el tamaño -->
+        />
+
+        <Button
+            android:id="@+id/btnPartidaRapida"
+            android:layout_width="0dp"
+            android:layout_height="73dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/createMatch_button"
+            android:fontFamily="@font/Baloo"
+            android:text="CREAR PARTIDA"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:lineSpacingExtra="-17dp"
+            />
+
+        <Button
+            android:id="@+id/btnUnirse"
+            android:layout_width="0dp"
+            android:layout_height="73dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/joinMatch_button"
+            android:text="UNIRSE A PARTIDA"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/Baloo"
+            android:textSize="28sp"
+            android:lineSpacingExtra="-17dp"
+        />
+
+    </LinearLayout>
+</RelativeLayout>

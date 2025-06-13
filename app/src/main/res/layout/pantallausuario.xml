@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pantallaronda"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Header superior -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:background="#467599"
+        android:paddingHorizontal="15dp">
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Menú"
+            android:src="@drawable/icono"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/Baloo"
+            android:text="Askly"
+            android:textColor="#FFFFFF"
+            android:textSize="65sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/circuloRojo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_red" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contenidopregunta"
+        android:layout_width="match_parent"
+        android:layout_height="555dp"
+        android:layout_below="@id/header"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Espaciado -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="23dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/Baloo"
+            android:text="Correo electronico"
+            android:textColor="#E0E0E0"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="fan@upb.edu"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/Baloo"
+            android:layout_marginTop="0dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="23dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/Baloo"
+            android:text="Puntos Totales"
+            android:textColor="#E0E0E0"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10051"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/Baloo"
+            android:layout_marginTop="0dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="23dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/Baloo"
+            android:text="Partidas Ganadas"
+            android:textColor="#E0E0E0"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/Baloo"
+            android:layout_marginTop="0dp" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/seccioninterior2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="15dp"
+        android:background="#F5F5F5">
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:textSize="24sp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/Baloo" />
+    </LinearLayout>
+</RelativeLayout>

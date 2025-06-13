@@ -1,0 +1,138 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- HEADER FIJO -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:background="#467599"
+        android:paddingHorizontal="15dp">
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Menú"
+            android:src="@drawable/icono"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/Baloo"
+            android:text="Askly"
+            android:textColor="#FFFFFF"
+            android:textSize="65sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/circuloRojo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_red" />
+    </RelativeLayout>
+
+    <!-- CONTENIDO DIRECTO, SIN SCROLL -->
+    <LinearLayout
+        android:id="@+id/contenidopregunta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Espaciado -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <!-- Nombre de la pregunta -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la pregunta"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/Baloo" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="¿Cuál sería tu reacción si la torre de pisa cayera?"
+            android:background="@drawable/margenRespuestas_button"
+            android:padding="12dp" />
+
+        <!-- Respuesta 1 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Respuesta 1"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/Baloo"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ej: Nooo!"
+            android:background="@drawable/margenRespuestas_button"
+            android:padding="12dp" />
+
+        <!-- Respuesta 2 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Respuesta 2"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/Baloo"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ej: Eso brad 😎"
+            android:background="@drawable/margenRespuestas_button"
+            android:padding="12dp" />
+
+        <!-- Respuesta 3 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Respuesta 3"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/Baloo"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ej: En realidad, es la torre de pisa..."
+            android:background="@drawable/margenRespuestas_button"
+            android:padding="12dp" />
+
+        <!-- Botón Guardar -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:backgroundTint="#467599"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/Baloo"
+            android:layout_marginTop="24dp"
+            android:textSize="20dp"
+            android:background="@drawable/save_button" />
+    </LinearLayout>
+</RelativeLayout>
