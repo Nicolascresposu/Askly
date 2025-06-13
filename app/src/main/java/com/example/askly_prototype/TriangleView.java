@@ -1,11 +1,16 @@
 package com.example.askly_prototype;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TriangleView extends View {
-    //Estos 3 se establecen desde MainActivity, para el añadirpunto.
+    // Existing variables
     public String owner="Fer";
     public String target="Fer";
     public int playerColor=Color.RED;
@@ -27,15 +32,17 @@ public class TriangleView extends View {
     private List<Pin> currentClickPoints;
     private List<Pin> clickPoints;
     private int main2 = Color.BLACK;
-    public OnTapListener onTapListener; // Interfaz normal de java para avisar al MainActivity.kt
+    public OnTapListener onTapListener;
+
+    // New variables for image handling
+    private Bitmap pinBitmap;
+    private Paint imagePaint;
+    private int pinWidth = 80; // Adjust as needed
+    private int pinHeight = 80; // Adjust as needed
 
     public interface OnTapListener {
         void onTap();
     }
-    public void setOnTapListener(OnTapListener listener) {
-        this.onTapListener = listener;
-    }
-
 
     public TriangleView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -52,36 +59,55 @@ public class TriangleView extends View {
         trianglePath = new Path();
         clickPoints = new ArrayList<>();
         currentClickPoints = new ArrayList<>();
+
+        // Load the pin image
+        pinBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pin);
+        // Scale the bitmap to desired size
+        pinBitmap = Bitmap.createScaledBitmap(pinBitmap, pinWidth, pinHeight, true);
+
+        // Initialize paint for image drawing with color filtering capability
+        imagePaint = new Paint();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // Definir las 2 puntas (arriba y derecha) del triangulo, para dimensiones
+        // Draw triangle (unchanged)
         float width = getWidth();
         float height = getHeight();
 
         trianglePath.reset();
-        trianglePath.moveTo(width / 2, 0);         // Top center
-        trianglePath.lineTo(0, height);             // Bottom left
-        trianglePath.lineTo(width, height);         // Bottom right
-        trianglePath.close();                       // Close the triangle
-
+        trianglePath.moveTo(width / 2, 0);
+        trianglePath.lineTo(0, height);
+        trianglePath.lineTo(width, height);
+        trianglePath.close();
         canvas.drawPath(trianglePath, trianglePaint);
 
         // Dibuja los puntos
         Paint pointPaint = new Paint();
 
         //Aca se cambia cuando ya haya otros jugadores
-        pointPaint.setStyle(Paint.Style.FILL);
-
+        pointPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        pointPaint.setColor(Color.RED);
+        pointPaint.setStrokeWidth(10);
+        // Draw pins instead of circles
         for (Pin point : currentClickPoints) {
-            pointPaint.setColor(point.color);
-            canvas.drawCircle(point.point.x, point.point.y, 10, pointPaint);
+            // Apply color filter to the image
+            ColorFilter filter = new LightingColorFilter(point.color, point.color);
+            imagePaint.setColorFilter(filter);
+
+
+            // Calculate position to center the image where the circle would be
+            float left = point.point.x - (pinWidth / 2);
+            float top = point.point.y - (pinHeight);
+
+            canvas.drawBitmap(pinBitmap, left, top, imagePaint);
+            canvas.drawCircle(point.point.x, point.point.y - 50, 10, pointPaint);
         }
     }
 
+    // Rest of your code remains unchanged...
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
@@ -93,15 +119,18 @@ public class TriangleView extends View {
                     clickPoints.addAll(currentClickPoints);
                     currentClickPoints.removeAll(clickPoints);
                 }
-                currentClickPoints.add(new Pin(owner,new PointF(x, y),target,idPregunta,playerColor)); //Esto se llena y actualiza con datos desde MainActiivty
+                currentClickPoints.add(new Pin(owner, new PointF(x, y), target, idPregunta, playerColor));
                 if (onTapListener != null) {
-                    onTapListener.onTap(); // Avisar al listener
+                    onTapListener.onTap();
                 }
-                invalidate(); // Redibujar el triangulo
+                invalidate();
             }
         }
         return true;
     }
+
+    // ... keep all other existing methods
+
 
     private boolean isInsideTriangle(float x, float y) {
         float width = getWidth();
@@ -129,5 +158,8 @@ public class TriangleView extends View {
 
     public List<Pin> getCurrentClickPoints() {
         return currentClickPoints;
+    }
+    public void setOnTapListener(OnTapListener listener) {
+        this.onTapListener = listener;
     }
 }
