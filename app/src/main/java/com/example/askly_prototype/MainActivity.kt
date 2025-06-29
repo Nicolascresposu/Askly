@@ -67,15 +67,15 @@ class MainActivity : ComponentActivity() {
         //Currently hardcoded
         if (owner == "Fer") {
             owner = "Nico"
-            triangleView.playerColor = ( Color.Green.toArgb())
+            triangleView.ownerColor = ( Color.Green.toArgb())
         }
         else if (owner == "Nico") {
             owner = "Ari"
-            triangleView.playerColor = ( Color.Blue.toArgb())
+            triangleView.ownerColor = ( Color.Blue.toArgb())
         }
         else if (owner == "Ari") {
             owner = "Fer"
-            triangleView.playerColor = ( Color.Red.toArgb())
+            triangleView.ownerColor = ( Color.Red.toArgb())
         }
         if (owner != target) {
             ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
@@ -89,12 +89,15 @@ class MainActivity : ComponentActivity() {
     private fun targetCycle(ownerAndTarget: TextView) {
         if (target == "Fer") {
             target = "Nico"
+            triangleView.targetColor = ( Color.Green.toArgb())
         }
         else if (target == "Nico") {
             target = "Ari"
+            triangleView.targetColor = ( Color.Blue.toArgb())
         }
         else if (target == "Ari") {
             target = "Fer"
+            triangleView.targetColor = ( Color.Red.toArgb())
         }
         if (owner != target) {
             ownerAndTarget.text = owner + "; adivina donde " + target +" colocaria su pin"
@@ -144,7 +147,7 @@ class MainActivity : ComponentActivity() {
                 triangleView.owner = owner;
                 triangleView.target = target;
                 triangleView.idPregunta = tapCount / 3 //Considerar esto si hay errores con esta parte en el futuro; tiene un magic number
-                System.out.println("owner: " +triangleView.currentClickPoints.last().owner + " | target: " + triangleView.currentClickPoints.last().target + " | idPregunta: " + triangleView.currentClickPoints.last().idPregunta + " | point: " + triangleView.currentClickPoints.last().point + " | Color: " + triangleView.currentClickPoints.last().color)
+                System.out.println("owner: " +triangleView.currentClickPoints.last().owner + " | target: " + triangleView.currentClickPoints.last().target + " | idPregunta: " + triangleView.currentClickPoints.last().idPregunta + " | point: " + triangleView.currentClickPoints.last().point + " | Color: " + triangleView.currentClickPoints.last().targetColor)
 
 
                 //9 Seria para cuando ya estan todas las preguntas hechas. SOLO PARA FINES DE DEBUGGING.

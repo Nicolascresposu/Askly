@@ -24,7 +24,8 @@ public class TriangleView extends View {
     // Existing variables
     public String owner="Fer";
     public String target="Fer";
-    public int playerColor=Color.RED;
+    public int ownerColor=Color.RED;
+    public int targetColor=Color.WHITE;
     public int idPregunta;
     public int currentColor = Color.RED;
     private Paint trianglePaint;
@@ -94,7 +95,8 @@ public class TriangleView extends View {
         // Draw pins instead of circles
         for (Pin point : currentClickPoints) {
             // Apply color filter to the image
-            ColorFilter filter = new LightingColorFilter(point.color, point.color);
+            ColorFilter filter = new LightingColorFilter(point.targetColor, point.targetColor);
+            pointPaint.setColor(point.ownerColor);
             imagePaint.setColorFilter(filter);
 
 
@@ -119,7 +121,7 @@ public class TriangleView extends View {
                     clickPoints.addAll(currentClickPoints);
                     currentClickPoints.removeAll(clickPoints);
                 }
-                currentClickPoints.add(new Pin(owner, new PointF(x, y), target, idPregunta, playerColor));
+                currentClickPoints.add(new Pin(owner, new PointF(x, y), target, idPregunta, targetColor,ownerColor));
                 if (onTapListener != null) {
                     onTapListener.onTap();
                 }
