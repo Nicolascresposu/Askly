@@ -162,24 +162,24 @@ class MainActivity : ComponentActivity() {
                     ferScore += 100 * Math.pow(2.7182818,-(
                             distanceBetweenPointF(
                                 //TODO Hay que corregir esto: Quiza podria llevar esto de una lista a otra? Una que sea los procesados,y otro que sea los por procesar.
-                                triangleView.currentClickPoints.find { it.owner == "Fer"  && it.target == "Nico"}!!.point,
-                                triangleView.currentClickPoints.find { it.owner == "Fer"  && it.target == "Fer"}!!.point)
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Nico"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Fer"}!!.point)
                                     /30)) +
                             100 * Math.pow(2.7182818,-(
                             distanceBetweenPointF(
-                                triangleView.currentClickPoints.find { it.owner == "Fer"  && it.target == "Ari"}!!.point,
-                                triangleView.currentClickPoints.find { it.owner == "Fer"  && it.target == "Fer"}!!.point)
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Ari"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Fer"  && it.target == "Fer"}!!.point)
                                     /30))
 
                     nicoScore += 100 * Math.pow(2.7182818,-(
                             distanceBetweenPointF(
-                                triangleView.currentClickPoints.find { it.owner == "Nico"  && it.target == "Fer"}!!.point,
-                                triangleView.currentClickPoints.find { it.owner == "Nico"  && it.target == "Nico"}!!.point)
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Fer"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Nico"}!!.point)
                                     /30)) +
                             100 * Math.pow(2.7182818,-(
                             distanceBetweenPointF(
-                                triangleView.currentClickPoints.find { it.owner == "Nico"  && it.target == "Ari"}!!.point,
-                                triangleView.currentClickPoints.find { it.owner == "Nico"  && it.target == "Nico"}!!.point)
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Ari"}!!.point,
+                                triangleView.clickPoints.find { it.owner == "Nico"  && it.target == "Nico"}!!.point)
                                     /30))
 
                     ariScore += 100 * Math.pow(2.7182818,-(

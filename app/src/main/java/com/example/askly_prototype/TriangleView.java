@@ -1,5 +1,8 @@
 package com.example.askly_prototype;
 
+import static java.lang.Math.ceil;
+import static java.lang.Math.floor;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,13 +28,14 @@ public class TriangleView extends View {
     public String owner="Fer";
     public String target="Fer";
     public int ownerColor=Color.RED;
-    public int targetColor=Color.WHITE;
+    public int targetColor=Color.RED;
     public int idPregunta;
     public int currentColor = Color.RED;
     private Paint trianglePaint;
     private Path trianglePath;
     private List<Pin> currentClickPoints;
-    private List<Pin> clickPoints;
+    private List<Pin> showableClickPoints;
+    public List<Pin> clickPoints;
     private int main2 = Color.BLACK;
     public OnTapListener onTapListener;
 
@@ -40,6 +44,7 @@ public class TriangleView extends View {
     private Paint imagePaint;
     private int pinWidth = 80; // Adjust as needed
     private int pinHeight = 80; // Adjust as needed
+    public int contadorResetViewPlayerCount = 0;
 
     public interface OnTapListener {
         void onTap();
@@ -94,6 +99,10 @@ public class TriangleView extends View {
         pointPaint.setStrokeWidth(10);
         // Draw pins instead of circles
         for (Pin point : currentClickPoints) {
+            if (contadorResetViewPlayerCount > 2) {
+                contadorResetViewPlayerCount=0;
+                break;
+            }
             // Apply color filter to the image
             ColorFilter filter = new LightingColorFilter(point.targetColor, point.targetColor);
             pointPaint.setColor(point.ownerColor);
@@ -106,6 +115,7 @@ public class TriangleView extends View {
 
             canvas.drawBitmap(pinBitmap, left, top, imagePaint);
             canvas.drawCircle(point.point.x, point.point.y - 50, 10, pointPaint);
+            contadorResetViewPlayerCount++;
         }
     }
 
@@ -117,7 +127,7 @@ public class TriangleView extends View {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (isInsideTriangle(x, y)) {
-                if (currentClickPoints.size() == 9) {
+                if (currentClickPoints.size() == 3) { //REPLACE magic 9 with: Player size
                     clickPoints.addAll(currentClickPoints);
                     currentClickPoints.removeAll(clickPoints);
                 }
@@ -125,7 +135,10 @@ public class TriangleView extends View {
                 if (onTapListener != null) {
                     onTapListener.onTap();
                 }
-                invalidate();
+
+//                if (contadorResetViewPlayerCount<2) {
+                    invalidate();
+//                }
             }
         }
         return true;
