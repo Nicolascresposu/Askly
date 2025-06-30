@@ -30,6 +30,11 @@ class MainActivity : ComponentActivity() {
     var ferScore: Double = 0.0
     var nicoScore: Double = 0.0
     var ariScore: Double = 0.0
+    var players: List<Jugador> = listOf(
+        Jugador(android.graphics.Color.RED,"Fer"),
+        Jugador(android.graphics.Color.BLUE,"Ari"),
+        Jugador(android.graphics.Color.GREEN,"Nico")
+    )
 
     data class Pregunta(
         val id: Int,
